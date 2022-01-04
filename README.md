@@ -1,7 +1,6 @@
 
 ![image](https://user-images.githubusercontent.com/92525310/148018553-00e7f23d-cad6-4a22-9183-b3d51fbc90f4.png)
 
-
 # 샐러드 쇼핑몰 팀 프로젝트
 1. 쇼핑몰 주소 - http://itwillbs9.cafe24.com/SaladMall/index
 2. 디비 설계 - https://www.erdcloud.com/d/CSdHd4s6yZQC4GwdW
@@ -29,8 +28,9 @@
 - GitHub Wiki : 회의록 정리, 공지사항, 디비 테이블, 레이아웃 및 스토리 보드 공유, 댓글 소통
 - KakaoTalk : 익명 투표, 공지사항 전달, 일정 조율
 
-## 구현 기간
+## 구현 기간 및 팀원
 - 2021.09.01 - 10.07
+- 팀원 총 8명
 
 ## 구현 기능
 
