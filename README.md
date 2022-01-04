@@ -1,3 +1,7 @@
+
+![image](https://user-images.githubusercontent.com/92525310/148018553-00e7f23d-cad6-4a22-9183-b3d51fbc90f4.png)
+
+
 # 샐러드 쇼핑몰 팀 프로젝트
 1. 쇼핑몰 주소 - http://itwillbs9.cafe24.com/SaladMall/index
 2. 디비 설계 - https://www.erdcloud.com/d/CSdHd4s6yZQC4GwdW
