@@ -29,40 +29,41 @@ public class R_CustomServiceImpl implements R_CustomService{
 	@Inject
 	private R_CustomDAO rcdao;
 	
+	// 재료 목록 불러오기
 	@Override
 	public List<ingredientVO> igdtList(int category) throws Exception {
+		
 		System.out.println(" S : igdtList() 호출 -> DAO");
-		
-		System.out.println(" S : DAO 처리 완료");
-		
 		
 		return rcdao.listCategory(category);
 	}
 	
+	// 새로운 샐러드 만들기
 	@Override
 	public void newCustom(String m_id) throws Exception {
+		
 		System.out.println(" S : newCustom() 호출 -> DAO");
 		
 		// 값이 없으면 생성
 		if(rcdao.chkCustom(m_id)==null) {
 			rcdao.newCustom(m_id);
-		}
-		else {
+		} else {
 			// 값이 있으면 초기화만
 			rcdao.resetCustom(m_id);
 		}
 		
-		
-		
 		System.out.println(" S : DAO 처리 완료 ");
 	}
 	
+	// 커스텀에 재료 추가
 	@Override
 	public void addCustom(customVO vo) throws Exception {
+		
 		System.out.println(" S : addCustom() 호출 -> DAO");
 		
 		// 첫번째 재료는 그냥 추가
 		if(rcdao.showCustom(vo.getM_id())==null) {
+			
 			rcdao.addFirstCustom(vo);
 		}
 		// 두번째 이후 재료는 ,를 붙여서 추가
@@ -72,18 +73,20 @@ public class R_CustomServiceImpl implements R_CustomService{
 		
 	}
 	
+	// 현재 샐러드 보여주기
 	@Override
 	public List<ingredientVO> customList(String m_id) throws Exception {
+		
 		System.out.println(" S : customList() 호출 -> DAO");
 		
 		// id에 해당하는 샐러드 조합 가져오기
-		
 		// rcp_cmbnt가 null이면 실행하지않기
 		if(rcdao.showCustom(m_id)==null) {
 			return null;
 		}
 		
 		String igdt_nums = rcdao.showCustom(m_id);
+		
 		System.out.println(" S : str 값 확인 "+igdt_nums);
 		// igdt_num 이 1,2,3 와 같이 int + String + int + … 와 같이 저장되어서 첫번쨰값 이후를 못읽는다
 		// rcdao.list(igdt_nums);
@@ -97,11 +100,11 @@ public class R_CustomServiceImpl implements R_CustomService{
 			igdt_numList.add(item);
 		}
 		
-		
 		// List<ingredientVO> 리턴 
 		return rcdao.list(igdt_numList);
 	}
 	
+	// 샐러드 조합 받아오기
 	@Override
 	public String custom(String m_id) throws Exception {
 		
@@ -109,11 +112,13 @@ public class R_CustomServiceImpl implements R_CustomService{
 		
 		// 중복제거, 정렬
 		TreeSet<Integer> set = new TreeSet<Integer>();
-		for(int i=0;i<dup_rcp_cmbnt.length;i++) {
+		
+		for(int i=0 ; i<dup_rcp_cmbnt.length ; i++) {
 			set.add(Integer.parseInt(dup_rcp_cmbnt[i]));
 		}
 		
 		TreeSet<String> set2 = new TreeSet<String>();
+		
 		for(Integer integer : set) {
 			set2.add(integer.toString());
 		}
@@ -123,6 +128,7 @@ public class R_CustomServiceImpl implements R_CustomService{
 		return rcp_cmbnt;
 	}	
 	
+	// 샐러드 조합 체크
 	@Override
 	public String chkcustom(String m_id) throws Exception {
 		
@@ -130,6 +136,7 @@ public class R_CustomServiceImpl implements R_CustomService{
 		return rcdao.chkCustomCmbnt(m_id);
 	}
 	
+	// 레시피 추가
 	@Override
 	public void addRecipe(recipeVO vo) throws Exception {
 		
@@ -141,6 +148,7 @@ public class R_CustomServiceImpl implements R_CustomService{
 
 	}
 	
+	// 재료 조합 rcp_num 받아오기
 	@Override
 	public recipeVO findRecipe(String rcp_cmbnt) throws Exception {
 		
@@ -148,6 +156,7 @@ public class R_CustomServiceImpl implements R_CustomService{
 		return rcdao.findRecipe(rcp_cmbnt);
 	}
 	
+	// 장바구니 추가
 	@Override
 	public void addCart(cartVO vo) throws Exception {
 		
@@ -155,8 +164,7 @@ public class R_CustomServiceImpl implements R_CustomService{
 		if(rcdao.chkCart(vo.getRcp_num())==null) {
 			// 장바구니에 추가
 			rcdao.addCart(vo);
-		}
-		else {
+		} else {
 			// 중복시 수량만 +1
 			rcdao.updateCartAmount(vo.getRcp_num());
 		}
