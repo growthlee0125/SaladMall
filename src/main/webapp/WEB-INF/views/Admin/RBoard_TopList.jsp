@@ -3,7 +3,6 @@
 <%@ include file="header.jsp"%>
 
 <style>
-
 th, td {
 text-align: center;
 }
