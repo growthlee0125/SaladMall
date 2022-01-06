@@ -11,7 +11,6 @@ import com.teamsalad.domain.recipeBoardVO;
 import com.teamsalad.domain.recipeVO;
 
 public interface AdminService {
-	
 
 	///////////////////////////////////// 관리자 메인 화면 ///////////////////////////////////////////////////////////////
 	
