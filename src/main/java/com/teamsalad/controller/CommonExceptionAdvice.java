@@ -20,7 +20,7 @@ public class CommonExceptionAdvice {
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("err_commons"); // err_commons.jsp 페이지
 		mav.addObject("err", e); // err이름으로 e객체를 저장
-		mav.addObject("itwill", "에러발생!");
+		mav.addObject("ERROR", "에러발생!");
 		
 		return mav;
 	}
