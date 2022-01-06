@@ -23,34 +23,37 @@
  		<id property="rcp_price" column="rcp_price"/>
  	</resultMap>
      
-     <resultMap type="SaladCartVO" id="saladCart">
-     	<collection property="cart" resultMap="cart"/>
-     	<collection property="recipe" resultMap="recipe"/>
-     </resultMap>
+     	<resultMap type="SaladCartVO" id="saladCart">
+     		<collection property="cart" resultMap="cart"/>
+     		<collection property="recipe" resultMap="recipe"/>
+     	</resultMap>
  
-	 <!-- 주문 정보 -->
+	<!-- 주문 정보 입력 -->
 	<insert id="orderInfo">
 	 	insert into tbl_order(m_id, rcp_num, coupon_id, order_pay_num, rcp_name, order_name, order_date, order_receive_name,
 	                          order_receive_phone, order_receive_zip, order_receive_addr1, order_receive_addr2, order_type, order_amount, order_ship_price, order_total_price) 
-	    values(#{m_id}, #{rcp_num}, #{coupon_id}, #{order_pay_num}, #{rcp_name}, #{order_name}, now(), #{order_receive_name},
-	           #{order_receive_phone}, #{order_receive_zip}, #{order_receive_addr1}, #{order_receive_addr2}, #{order_type}, #{order_amount}, #{order_ship_price}, #{order_total_price})
+	    	values(#{m_id}, #{rcp_num}, #{coupon_id}, #{order_pay_num}, #{rcp_name}, #{order_name}, now(), #{order_receive_name},
+	               #{order_receive_phone}, #{order_receive_zip}, #{order_receive_addr1}, #{order_receive_addr2}, #{order_type}, #{order_amount}, #{order_ship_price}, #{order_total_price})
 	</insert>
 	
+	<!-- 주문 정보 조회 --> 
 	<select id="getOrderInfo" resultMap="saladCart">
 		select * from tbl_cart
 		natural join salad_recipe
 		natural join tbl_member
 		where m_id = #{m_id}
 	</select>
-	
+	 
+	<!-- 주문 번호 조회 -->
 	<select id="getOrderPayNum" resultType="Integer">
 		select max(order_num)
 		from tbl_order;
 	</select>
-
-    <delete id="cartDelete">
-    	delete from tbl_cart
-    	where cart_num = #{cart_num}
-    </delete>
+	
+	<!-- 주문 정보 삭제 --> 
+    	<delete id="cartDelete">
+    		delete from tbl_cart
+    		where cart_num = #{cart_num}
+    	</delete>
      
  </mapper>
