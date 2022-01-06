@@ -271,6 +271,7 @@ public class R_Board_Controller {
 		
 	}
 	
+	// 검색 데이터 불러오기
 	@RequestMapping(value = "searchTotal/{table}")
 	public @ResponseBody List<searchVO> searchTotal(@PathVariable String table, String searchData) throws Exception{
 		
@@ -284,6 +285,7 @@ public class R_Board_Controller {
 		return s;
 	}
 	
+	// 검색 데이터 불러오기 (private)
 	private List<searchVO> objectToSearchVO(String table, Object o){
 		
 		List<searchVO> list = new ArrayList<searchVO>();
