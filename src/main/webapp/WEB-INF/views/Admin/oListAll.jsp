@@ -137,7 +137,7 @@ text-align: center;
 	</div>
 	<!-- /.row -->
 </section>
-
+<!-- 검색창 -->
 <div class="text-center" style="padding-bottom: 20px;">
 	<div class="hero__search__form text-center">
 		<input id="order_num" type="hidden">
@@ -168,7 +168,7 @@ text-align: center;
 </div>
 
 <%@ include file="footer.jsp"%>
-
+<!--  -->
 <script type="text/javascript">
 	$(document).ready(function(){
 		$("#order_name").keyup(function(){
