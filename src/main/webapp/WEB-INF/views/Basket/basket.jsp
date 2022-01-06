@@ -5,8 +5,7 @@
 <%@ include file="../include/header.jsp" %>
 
 <script src="${pageContext.request.contextPath }/resources/jquery/jquery-3.3.1.min.js"></script>
-
-	<c:set var="path" value="${pageContext.request.contextPath }/resources/saladmall/"/>
+<c:set var="path" value="${pageContext.request.contextPath }/resources/saladmall/"/>
 
    <!-- Breadcrumb Section Begin -->
    <section class="breadcrumb-section set-bg" data-setbg="${path}img/breadcrumb.jpg">
