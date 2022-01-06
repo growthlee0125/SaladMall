@@ -15,8 +15,6 @@ import com.teamsalad.domain.memberVO;
 import com.teamsalad.domain.orderVO;
 import com.teamsalad.domain.replyVO;
 
-//@Repository : 해당 클래스가 DAO객체의 역활을 하도록 등록(root-context.xml)
-
 @Repository
 public class CSDAOImpl implements CSDAO {
 	
@@ -83,7 +81,7 @@ public class CSDAOImpl implements CSDAO {
 		
 		logger.info(" DAO : modify(CS_vo) 호출 ");
 		
-	    sqlSession.update(namespace+".modify", CS_vo);
+	    	sqlSession.update(namespace+".modify", CS_vo);
 	    		
 	}
 
@@ -96,6 +94,7 @@ public class CSDAOImpl implements CSDAO {
 		sqlSession.delete(namespace+".delete", customer_b_num);		
 		
 	}
+	
 	// 회원 주문정보 불러오기
 	@Override
 	public List<orderVO> memberOrderInfo(String m_id) throws Exception {
