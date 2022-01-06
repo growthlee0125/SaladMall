@@ -65,7 +65,7 @@
 	                </form>
 	            </div>
 	        </div>
-			<!-- step bar 끝 -->    
+		<!-- step bar 끝 -->    
         
             <div class="row">
                 <div class="col-lg-8">
@@ -79,11 +79,11 @@
                                 </tr>
                             </thead>
                             <tbody>
-								<c:forEach var="vo" varStatus="status" items="${ingredientList }">
-									<form action="" method="POST">
-										<input type="hidden" name="igdt_num" value="${vo.igdt_num }">
-										<input type="hidden" name="igdt_name" value="${vo.igdt_name }">
-										<input type="hidden" name="igdt_price" value="${vo.igdt_price }">		    
+				<c:forEach var="vo" varStatus="status" items="${ingredientList }">
+					<form action="" method="POST">
+						<input type="hidden" name="igdt_num" value="${vo.igdt_num }">
+						<input type="hidden" name="igdt_name" value="${vo.igdt_name }">
+						<input type="hidden" name="igdt_price" value="${vo.igdt_price }">		    
 	                                <tr>
 	                                    <td class="shoping__cart__item">
 	                                        <img src="${path}img/cart/cart-1.jpg" alt="">
@@ -96,8 +96,8 @@
 	                                        <input type="submit" class="add" value="추가">
 	                                    </td>
 	                                </tr>
-									</form>
-								</c:forEach>                       
+					</form>
+				</c:forEach>                       
                             </tbody>
                         </table>
                     </div>
@@ -116,21 +116,21 @@
                         <div class="checkout__order__products">Products <span>Total</span></div>
                         <ul id="customList">
                         	<c:choose>
-								<c:when test="${customList != null }">
-									<c:forEach var="cvo" items="${customList }">
-                            			<li value="${cvo.igdt_price }">${cvo.igdt_name } <span>&#8361;${cvo.igdt_price }</span></li>
-									</c:forEach>
-								</c:when>
-								<c:otherwise>
-									<li>아직 값이 없습니다</li>
-								</c:otherwise>
-							</c:choose>
+					<c:when test="${customList != null }">
+						<c:forEach var="cvo" items="${customList }">
+						<li value="${cvo.igdt_price }">${cvo.igdt_name } <span>&#8361;${cvo.igdt_price }</span></li>
+						</c:forEach>
+					</c:when>
+					<c:otherwise>
+						<li>아직 값이 없습니다</li>
+					</c:otherwise>
+				</c:choose>
                         </ul>     
                         <div id="total" class="checkout__order__total">Total <span>&#8361;</span></div>
-						<form role="form">
-							<button type="submit" id="btn-1">레시피 등록</button>
-							<button type="submit" id="btn-2" class="site-btn">Shopping Cart</button>
-						</form>
+				<form role="form">
+					<button type="submit" id="btn-1">레시피 등록</button>
+					<button type="submit" id="btn-2" class="site-btn">Shopping Cart</button>
+				</form>
                     </div>
                 </div>         
             </div>
