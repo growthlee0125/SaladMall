@@ -53,8 +53,6 @@ public class M_Main_Controller {
 		
 		// 세션값 저장
 		String m_id = (String)session.getAttribute("m_id");
-		
-		// 세션값 저장
 				
 		if (m_id == null) {
 			return "redirect:/M_Login/login";
@@ -188,9 +186,7 @@ public class M_Main_Controller {
 			return "redirect:/M_Main/orderList";
 		}
 		
-		
 		orderVO ovo = service.orderInfo(order_num);
-		//service.orderDelete(order_num);
 		model.addAttribute("mvo", service.getMemberInfo(m_id));	
 		model.addAttribute("ovo", service.orderInfo(order_num));
 		
@@ -203,8 +199,10 @@ public class M_Main_Controller {
 	public String orderDeletePOST(HttpSession session, Integer order_num) throws Exception {
 			
 			logger.info(" orderDeletePOST() 호출! ");
+			
 			service.orderDelete(order_num);
+			
 			return "redirect:./orderList";
-		}	
+	}	
 
 }
