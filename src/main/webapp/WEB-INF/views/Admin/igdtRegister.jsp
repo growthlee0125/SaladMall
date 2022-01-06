@@ -26,12 +26,12 @@ text-align: center;
 					<label for="igdt_category">재료 카테고리</label>
 					<select class="form-control" name="igdt_category" id="igdt_category" >
 					 	<option selected value="0">=== 선택 ===</option>
-	                    <option value="1">야채</option>
-	                    <option value="2">고기</option>
-	                    <option value="3">해산물</option>
-	                    <option value="4">소스</option>
-	                    <option value="5">기타</option>
-                	</select> 
+						<option value="1">야채</option>
+						<option value="2">고기</option>
+						<option value="3">해산물</option>
+						<option value="4">소스</option>
+						<option value="5">기타</option>
+					</select> 
 				</div>
 				<div class="form-group">
 					<label for="igdt_name">재료 이름</label> 
@@ -42,15 +42,15 @@ text-align: center;
 					<input type="text" class="form-control" id="igdt_price" name="igdt_price" >
 				</div>
 				<div class="form-group">
-                  <label for="igdt_main_img">대표사진</label>
-                  <input type="file" id="igdt_main_img" name="igdt_main_img">
-                  <p class="help-block">재료 대표 이미지를 등록해주세요.</p>
-                </div>
-                <div class="form-group">
-                  <label for="igdt_sub_img">보조이미지</label>
-                  <input type="file" id="igdt_sub_img" name="igdt_sub_img">
-                  <p class="help-block">재료 보조 이미지를 등록해주세요.</p>
-                </div>
+				  <label for="igdt_main_img">대표사진</label>
+				  <input type="file" id="igdt_main_img" name="igdt_main_img">
+				  <p class="help-block">재료 대표 이미지를 등록해주세요.</p>
+				</div>
+				<div class="form-group">
+				  <label for="igdt_sub_img">보조이미지</label>
+				  <input type="file" id="igdt_sub_img" name="igdt_sub_img">
+				  <p class="help-block">재료 보조 이미지를 등록해주세요.</p>
+				</div>
 				<div class="form-group">
 					<label for="igdt_country">원산지</label> 
 					<input type="text" class="form-control" id="igdt_country" name="igdt_country" >
