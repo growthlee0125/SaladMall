@@ -27,28 +27,27 @@ import com.teamsalad.service.CSService;
 @RequestMapping("/CS/*")
 public class CS_Controller {
 	
-	private static final Logger logger =
-			LoggerFactory.getLogger(CS_Controller.class);
+	private static final Logger logger = LoggerFactory.getLogger(CS_Controller.class);
 	
 	@Inject
 	private CSService CS_service;
 	
-	// 게시판 글 전체 조회 페이징(GET)
+	// 게시판 글 전체 조회 페이지(GET)
 	@RequestMapping(value = "/listAll", method = RequestMethod.GET)
 	public String listALLGET(Criteria cri, Model model, @ModelAttribute("result") String result) throws Exception {
 
-			logger.info(" C: listALLGET() 호출 -> view 페이지 이동");
+		logger.info(" C: listALLGET() 호출 ");
 
-			// 페이징처리 정보생성 (하단부)
-			PageMaker pm = new PageMaker();
-			pm.setCri(cri);
-			pm.setTotalCount(CS_service.countCSBoard(cri));
+		// 페이징처리 정보생성 (하단부)
+		PageMaker pm = new PageMaker();
+		pm.setCri(cri);
+		pm.setTotalCount(CS_service.countCSBoard(cri));
 
-			// Criteria 객체 정보 저장(pageStart/pageSize)
-			model.addAttribute("listAll", CS_service.listCri(cri));
-			model.addAttribute("pm", pm);
+		// Criteria 객체 정보 저장(pageStart/pageSize)
+		model.addAttribute("listAll", CS_service.listCri(cri));
+		model.addAttribute("pm", pm);
 
-			return "/CS/listAll";
+		return "/CS/listAll";
 	}
 	
 	// 글쓰기(GET)
@@ -59,6 +58,7 @@ public class CS_Controller {
 		
 		// 세션값 저장
 		String m_id = (String)session.getAttribute("m_id");
+		
 		if (m_id == null) {
 			return "redirect:/M_Login/login";
 		}
@@ -92,17 +92,10 @@ public class CS_Controller {
 				
 		customerBoardVO CS_vo = CS_service.read(customer_b_num);
 		
-		//int reply_b_main_num = customer_b_num;
-		//String reply_m_id = m_id;
-	    //List<replyVO> replyList = CS_service.replyInfo(reply_m_id,reply_b_main_num);
-		//model.addAttribute("replyList", replyList);
-		
 		// DB에서 가져온 데이터를 저장
 		model.addAttribute("CS_vo", CS_vo);
 		model.addAttribute("m_id", m_id);
 		model.addAttribute("pageNum", pageNum);
-		
-		
 	}
 	
 	// 게시판 글 수정(GET)
@@ -111,7 +104,6 @@ public class CS_Controller {
 		
 		logger.info(" C : modifyGET() 호출");
 		
-		// 세션값 저장
 		String m_id = (String)session.getAttribute("m_id");
 		
 		if (m_id == null) {
@@ -136,18 +128,7 @@ public class CS_Controller {
 		return "redirect:/CS/listAll";
 	}
 	
-	// 게시판 글 삭제
-	@RequestMapping(value = "/delete", method = RequestMethod.POST)
-	public String deletePost(Integer customer_b_num) throws Exception{
-		
-		// 서비스 객체안에 삭제처리 동작
-		CS_service.delete(customer_b_num);
-		
-		// 리스트페이지로 이동
-		return "redirect:/CS/listAll";
-	}
-	
-	// 게시판 글 삭제
+	// 게시판 글 삭제(GET)
 	@RequestMapping(value = "/delete", method = RequestMethod.GET)
 	public String deleteGET( HttpSession session, Integer customer_b_num) throws Exception{
 		
@@ -165,6 +146,14 @@ public class CS_Controller {
 		return "redirect:/CS/listAll";
 	}
 	
-	
-
+	// 게시판 글 삭제 (POST)
+	@RequestMapping(value = "/delete", method = RequestMethod.POST)
+	public String deletePost(Integer customer_b_num) throws Exception{
+		
+		// 서비스 객체안에 삭제처리 동작
+		CS_service.delete(customer_b_num);
+		
+		// 리스트페이지로 이동
+		return "redirect:/CS/listAll";
+	}
 }
