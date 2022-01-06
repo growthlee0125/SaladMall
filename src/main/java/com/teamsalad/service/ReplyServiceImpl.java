@@ -15,7 +15,8 @@ public class ReplyServiceImpl implements ReplyService {
 	
 	@Inject
 	private ReplyDAO rdao;
-
+	
+	// 댓글 리스트
 	@Override
 	public List<replyVO> list(Integer reply_b_main_num) throws Exception {
 		
@@ -23,7 +24,8 @@ public class ReplyServiceImpl implements ReplyService {
 		
 		return rdao.list(reply_b_main_num);
 	}
-
+	
+	// 댓글 쓰기
 	@Override
 	public void create(replyVO rvo) throws Exception {
 		
@@ -32,14 +34,14 @@ public class ReplyServiceImpl implements ReplyService {
 		rdao.create(rvo);
 		
 	}
-
+	
+	// 댓글 수정
 	@Override
 	public void update(replyVO rvo) throws Exception {
 		
 		System.out.println("S : update(replyVO rvo) 호출");
 		
 		rdao.update(rvo);
-		
 	}
 	
 	// 관리자 댓글시 상태 업데이트
@@ -52,7 +54,7 @@ public class ReplyServiceImpl implements ReplyService {
 		
 	}
 	
-
+	// 댓글 삭제
 	@Override
 	public void delete(Integer reply_b_num) throws Exception {
 		
@@ -67,6 +69,7 @@ public class ReplyServiceImpl implements ReplyService {
 	public List<replyVO> listPaging(Integer reply_b_main_num, Criteria criteria) throws Exception {
 			
 		System.out.println("S : replyListPaging(Integer reply_b_main_num, Criteria criteria) 호출");
+		
 		return rdao.listPaging(reply_b_main_num, criteria);
 	}
 	
@@ -76,6 +79,7 @@ public class ReplyServiceImpl implements ReplyService {
 	public int countReplies(Integer reply_b_main_num) throws Exception {
 	
 		System.out.println("S : countReplies(Integer reply_b_main_num) 호출");
+		
 		return rdao.countReplies(reply_b_main_num);
 	}
 
