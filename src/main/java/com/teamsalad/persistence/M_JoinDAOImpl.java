@@ -7,12 +7,8 @@ import org.springframework.stereotype.Repository;
 
 import com.teamsalad.domain.memberVO;
 
-//@Repository : DAO역할의 파일설정 ( 스프링에 해당 파일이 DAO라고 설정 )
-//=> root-context.xml에서 bean으로 인식
-
 @Repository
 public class M_JoinDAOImpl implements M_JoinDAO {
-	// DAO 객체 역할
 	
 	@Inject
 	private SqlSession sqlSession;
