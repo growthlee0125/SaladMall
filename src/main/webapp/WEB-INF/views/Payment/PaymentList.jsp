@@ -6,9 +6,6 @@
 <meta charset="UTF-8">
 <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js" ></script>
 <script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
-<script type="text/javascript">
-	alert("시작");
-</script>
 </head>
 <body>
 
@@ -114,12 +111,6 @@
                         </div>
                     </div>
                 </form>
-
-
-
-
-
-
 
 	<form name="orderF" id="orderF" action="paymentList">
 	<button type="button" onclick="goOrder()">주문하기</button>
