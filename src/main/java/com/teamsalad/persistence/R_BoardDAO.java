@@ -9,6 +9,7 @@ import com.teamsalad.domain.recipeVO;
 import com.teamsalad.domain.replyVO;
 
 public interface R_BoardDAO {
+	
 	// 게시물 등록하기
 	public void r_Board_regist(recipeBoardVO vo) throws Exception;
 	
@@ -27,6 +28,7 @@ public interface R_BoardDAO {
 	// 재료 이름 가져오기
 	public String r_Board_getIgdtName(int igdt) throws Exception;
 	
+	// 레시피 가져오기
 	public recipeVO R_BoardgetRecipe(int rcp_num) throws Exception;
 	
 	// 주간 인기 게시물 가져오기
@@ -68,8 +70,8 @@ public interface R_BoardDAO {
 	// 멤버 리스트 페이징
 	public List<BoardMemberVO> bListCri(Criteria cri) throws Exception;
 	
+	// 게시판 글 갯수 세기
 	public int countBoards(Criteria cri) throws Exception;
-	
 	
 	// recipe_board 컬럼 이름 가져오기
 	public List<String> r_Board_getColumn() throws Exception;
