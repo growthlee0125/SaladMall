@@ -29,7 +29,7 @@ public class M_Login_Controller {
 	private M_LoginService service;
 	
 	// 로그인 메인 페이지 (GET)
-    // http://localhost:8080/M_Login/login
+   	// http://localhost:8080/M_Login/login
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
 	public String mLoginGET(HttpSession session) throws Exception {
 		
@@ -50,8 +50,6 @@ public class M_Login_Controller {
 		logger.info("mLoginPOST() 호출 ");
 		
 		memberVO loginResultMVO = service.memberLogin(mvo);
-		
-		logger.info("" + loginResultMVO);
 		
 		if (loginResultMVO == null) {
 			logger.info("로그인 실패");	
@@ -95,7 +93,6 @@ public class M_Login_Controller {
 			
 			// 구글 로그인
 			googleLoginResultMVO = service.googleLogin(mvo);
-			System.out.println(googleLoginResultMVO);
 			session.setAttribute("m_id", googleLoginResultMVO.getM_id());
 			rttr.addFlashAttribute("mvo", googleLoginResultMVO);	
 			
@@ -109,29 +106,13 @@ public class M_Login_Controller {
 			logger.info("등록된 구글 아이디");
 
 			// 구글 로그인
-			System.out.println("구글 아이디로 로그인 완료");
 			session.setAttribute("m_id", googleLoginResultMVO.getM_id());
 			rttr.addFlashAttribute("mvo", googleLoginResultMVO);
 			
 			result = 0;
 			return result;
 
-		} else {
-			logger.info("등록되지 않은 구글 아이디");
-
-			// 구글 회원가입
-			service.googleJoin(mvo);
-			logger.info("구글 아이디 등록 완료");
-
-			// 구글 로그인
-			googleLoginResultMVO = service.googleLogin(mvo);
-			System.out.println(googleLoginResultMVO);
-			session.setAttribute("m_id", googleLoginResultMVO.getM_id());
-			rttr.addFlashAttribute("mvo", googleLoginResultMVO);
-			
-			result = 1;
-			return result;
-		}			
+		} 		
 	}
 	
 	// 임시 구글 로그아웃 페이지
@@ -145,6 +126,7 @@ public class M_Login_Controller {
 	public String mLogoutGET(HttpSession session) throws Exception {
 		
 		logger.info(" mLogoutGET() 호출 ");
+		
 		session.invalidate();
 		
 		return "redirect:/index";
@@ -162,6 +144,4 @@ public class M_Login_Controller {
 		service.findPw(response, vo);
 	}
 	
-
-
 }
