@@ -10,7 +10,7 @@
 
 <h2>에러발생</h2>
 ${err }
-${itwill }
+${ERROR }
 
 </body>
 </html>
