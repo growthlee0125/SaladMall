@@ -111,7 +111,7 @@
 					if (data == "false") {
 						alert("아이디나 비밀번호 오류입니다.");
 					} else if (data == "admin") {
-						alert("춘식이 관리자님 환영합니다.");
+						alert("관리자님 환영합니다.");
 						location.href = "${pageContext.request.contextPath}/Admin/main";
 					} else{
 						alert( m_id+"님 환영합니다.")
@@ -182,20 +182,18 @@
 		naverLogout();		
 	    
 		if (Kakao.Auth.getAccessToken()) {
-	      Kakao.API.request({
-	        url: '/v1/user/unlink',
-	        success: function (response) {
+	         Kakao.API.request({
+	         url: '/v1/user/unlink',
+	         success: function (response) {
 	        	console.log(response)
-	        },
-	        fail: function (error) {
+	         },
+	         fail: function (error) {
 	          	console.log(error)
-	        },
-	      })
+	         },
+	       })
 	      Kakao.Auth.setAccessToken(undefined)
 	    }
 	}  
-	
-	
 	
 	/*  네이버 로그아웃 */
 	var testPopUp;
@@ -227,7 +225,7 @@
 	    	var profile = googleUser.getBasicProfile();
 	    	var id_token = googleUser.getAuthResponse().id_token;
 	    			  	  
-		  	  var id = profile.getEmail();
+		      var id = profile.getEmail();
 		      var m_id = id.slice(0,id.indexOf("@"));
 		      var m_pw = 123456;
 				
