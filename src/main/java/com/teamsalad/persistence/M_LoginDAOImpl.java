@@ -19,7 +19,8 @@ public class M_LoginDAOImpl implements M_LoginDAO {
 	
 	// AdminMapper.xml 파일에 접근가능한 이름(주소)
 	private static final String namespace = "com.teamsalad.mapper.M_LoginMapper";
-
+	
+	// 일반 로그인
 	@Override
 	public memberVO memberLogin(memberVO mvo) throws Exception {
 		
