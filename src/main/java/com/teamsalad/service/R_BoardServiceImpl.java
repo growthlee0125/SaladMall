@@ -22,6 +22,7 @@ public class R_BoardServiceImpl implements R_BoardService {
 	
 	// 게시물 등록하기
 	public void registBoard(recipeBoardVO vo) throws Exception{
+		
 		System.out.println("게시물 등록 !");
 		
 		dao.r_Board_regist(vo);
@@ -29,14 +30,18 @@ public class R_BoardServiceImpl implements R_BoardService {
 		System.out.println("게시물 등록 끝!");
 	}
 	
+	// 레시피 들고오기
 	@Override
 	public recipeVO getRecipe(int rcp_num) throws Exception {
+		
 		recipeVO vo = dao.R_BoardgetRecipe(rcp_num);
+		
 		return vo;
 	}
 	
 	// 게시물 삭제하기
 	public void deleteBoard(int rcp_b_num) throws Exception{
+		
 		System.out.println("게시물 삭제 !");
 		
 		dao.r_Board_delete(rcp_b_num);
@@ -46,6 +51,7 @@ public class R_BoardServiceImpl implements R_BoardService {
 	
 	// 게시물 수정하기
 	public void modifyBoard(recipeBoardVO vo) throws Exception{
+		
 		System.out.println("게시물 수정 !");
 		
 		dao.r_Board_modify(vo);
@@ -78,22 +84,21 @@ public class R_BoardServiceImpl implements R_BoardService {
 	
 	// 재료 이름 가져오기
 	public String getIgdtName(int igdt) throws Exception{
+		
 		return dao.r_Board_getIgdtName(igdt);
 	}
 	
 	// 좋아요 확인하기
 	@Override
 	public boolean checkBoardLike(int rcp_b_num, String m_id) throws Exception {
-		// TODO Auto-generated method stub
+		
 		return dao.r_Board_likeCheck(rcp_b_num, m_id);
 	}
 	
 	// 좋아요 테이블 추가 게시판 업데이트
 	@Override
 	public void boardLikeAdd(int rcp_b_num, String m_id) throws Exception {
-		// TODO Auto-generated method stub
 		
-		//
 		dao.r_Board_likeInsert(rcp_b_num, m_id);
 		dao.r_Board_likeUpdate(rcp_b_num);
 		
@@ -102,17 +107,14 @@ public class R_BoardServiceImpl implements R_BoardService {
 	// 좋아요 테이블 삭제 게시판 좋아요 업데이트
 	@Override
 	public void boadrLikeCancel(int rcp_b_num, String m_id) throws Exception {
-		// TODO Auto-generated method stub
 		
 		dao.r_Board_likeDelete(rcp_b_num, m_id);
 		dao.r_Board_likeDiscount(rcp_b_num);
-		
 	}
 	
 	// 주간 인기 품목 가져오기
 	@Override
 	public List<BoardMemberVO> getWeeklyPopular() throws Exception {
-		// TODO Auto-generated method stub
 		
 		List<BoardMemberVO> vo = dao.r_Board_weeklyPopular();
 		
@@ -124,9 +126,11 @@ public class R_BoardServiceImpl implements R_BoardService {
 	//검색한 데이터 불러오기
 	@Override
 	public List<recipeBoardVO> getSearchData(String column, String data) throws Exception{
+		
 		List<Integer> rcp_b_nums = dao.r_Board_searchData(column, ("%" + data + "%"));
 		
 		if(rcp_b_nums.size() != 0) {
+			
 			List<recipeBoardVO> searchTitle = dao.r_Board_searchNum(rcp_b_nums);
 			
 			System.out.print(" Service Search Data : " + searchTitle.size());
@@ -137,42 +141,42 @@ public class R_BoardServiceImpl implements R_BoardService {
 		return null;
 	}
 	
+	// 댓글 불러오기
 	@Override
 	public List<replyVO> getBoardReply(int rcp_b_num) throws Exception {
-		// TODO Auto-generated method stub
 		
 		List<replyVO> vo = dao.r_Board_listReply("board", rcp_b_num);
 		
 		return vo;
 	}
 	
+	// 댓글 등록
 	@Override
 	public void addReply(replyVO vo) throws Exception {
-		// TODO Auto-generated method stub
 		
 		dao.r_Board_addReply(vo);
-		
 	}
 	
+	// 댓글 삭제
 	@Override
 	public void deleteReply(int reply_b_num) throws Exception {
-		// TODO Auto-generated method stub
 		
 		dao.r_Board_delete(reply_b_num);
 		
 	}
 	
+	// 댓글 수정
 	@Override
 	public void modifyReply(int reply_b_num, String reply_b_content) throws Exception {
-		// TODO Auto-generated method stub
 		
 		dao.r_Board_modifyReply(reply_b_content, reply_b_num);
 		
 	}
 	
+	// 게시글 수 조회
 	@Override
 	public int countBoards(Criteria cri) throws Exception {
-		// TODO Auto-generated method stub
+		
 		return dao.countBoards(cri);
 	}
 	
@@ -183,12 +187,11 @@ public class R_BoardServiceImpl implements R_BoardService {
 		System.out.println("mListCri(Criteria cri) 호출! ");
 			
 		return dao.bListCri(cri);
-		
 	}
 	
+	// 검색결과 불러오기
 	@Override
 	public Object getSearchTotal(String table_name, String data) throws Exception {
-		// TODO Auto-generated method stub
 		
 		System.out.println("getSearchTotal 시작");
 		
@@ -213,6 +216,7 @@ public class R_BoardServiceImpl implements R_BoardService {
 		System.out.println(" service : search_num count : " + search_num.size() );
 		
 		if(search_num.size() != 0)
+			
 			returnData = dao.total_searchTotal(table_name, primary_key, search_num);
 		
 		return returnData;
