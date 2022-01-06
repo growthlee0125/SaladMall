@@ -39,8 +39,6 @@
 	</div>
 </section>
 <!-- Checkout Section End -->
-
-<!-- 유화씨 허접한 패딩과 버튼배치 사과드립니다ㅜ 부탁드려요ㅜ  -->
 <div class="btn-group" role="group" style="padding-left: 390px; padding-bottom: 50px;">
 	<button type="button" id="BtnMypage" class="btn btn-primary">마이페이지</button>
 	<button type="button" id="BtnDelete" class="btn btn-danger">회원탈퇴</button>
