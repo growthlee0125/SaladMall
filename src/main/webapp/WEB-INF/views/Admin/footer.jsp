@@ -4,8 +4,8 @@
 
 <style>
 .main-footer {
-	position: absolute;
-	height : 30px;
+    position: absolute;
+    height : 30px;
     right: 0;
     bottom: 0;
     width: 100%;
