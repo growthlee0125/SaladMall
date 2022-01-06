@@ -84,6 +84,7 @@
   			insert into salad_recipe(rcp_cmbnt,rcp_name,rcp_content,rcp_img,rcp_price)
   			values (#{rcp_cmbnt}, #{rcp_name}, #{rcp_content}, #{rcp_img}, #{rcp_price})
   		</insert>
+	  
   		<insert id="addrecipeby2">
   			insert into salad_recipe(rcp_cmbnt,rcp_price)
   			values (#{rcp_cmbnt},#{rcp_price})
