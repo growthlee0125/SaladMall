@@ -23,14 +23,14 @@ public class Basket_Controller {
 	
 	private static final Logger logger = LoggerFactory.getLogger(Basket_Controller.class);
 	
-	
 	// http://localhost:8080/Basket/basket
+	
 	// 1. 장바구니 목록
 	@RequestMapping(value = "/basket", method = RequestMethod.GET)
 	public String basketGet(HttpSession session, Model model) throws Exception {
 		
-		// 세션값(m_id) 가져오기
 		String m_id = (String) session.getAttribute("m_id");
+		
 		if(m_id==null) {
 			return "redirect:/M_Login/login";
 		}
@@ -39,9 +39,9 @@ public class Basket_Controller {
 		
 		model.addAttribute("m_id", m_id);
 		
-	    model.addAttribute("Basket", service.Basket(m_id));
+	    	model.addAttribute("Basket", service.Basket(m_id));
 	 	 
-	    return "Basket/basket";
+	    	return "/Basket/basket";
 	}
 	
 	// 2. 장바구니 비우기 
