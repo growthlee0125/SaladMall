@@ -10,7 +10,6 @@ text-align: center;
 }
 </style>
 
-
    <div class="col-xs-12" style="padding-top: 70px;">
           <div class="box">
             <div class="box-header">
@@ -34,70 +33,70 @@ text-align: center;
                   <th>재료태그</th>
                   <th>재료크기</th>
                 </tr>
-   				<tr>
-   				<td>${ivo.igdt_num }</td>
-   					<c:choose>
-	   					<c:when test="${ivo.igdt_category == 1}">
-   							<td>야채</td>
-   						</c:when>
-   						<c:when test="${ivo.igdt_category == 2}">
-   							<td>고기</td>
-   						</c:when><c:when test="${ivo.igdt_category == 3}">
-   							<td>해산물</td>
-   						</c:when>
-   						<c:when test="${ivo.igdt_category == 4}">
-   							<td>소스</td>
-   						</c:when>
-   						<c:otherwise>
-   							<td>기타</td>
-   						</c:otherwise>
-   					</c:choose>
-   					<td>${ivo.igdt_name }</td>
-   					<td>${ivo.igdt_price }</td>
-   					<!-- 메인 이미지 파일  -->
-   					<td><img style = "width: 70px; height: 35px;" src="${pageContext.request.contextPath}/resources/upload/${ivo.igdt_main_img}"/></td>
-   					<!-- 보조 이미지 파일 -->
-   					<td><img style = "width: 70px; height: 35px;" src="${pageContext.request.contextPath}/resources/upload/${ivo.igdt_sub_img}"/></td>
-   					<td>${ivo.igdt_country }</td>
-   					<td>${ivo.igdt_info }</td>
-   					<td>${ivo.igdt_count }</td>
-   					<td>${ivo.igdt_tag }</td>
-   					<td>${ivo.igdt_size }</td>
-   	    		</tr> 		  		
-              </tbody></table>
-            </div>
-            <!-- /.box-body -->
-          </div>
-          <!-- /.box -->
+		<tr>
+		<td>${ivo.igdt_num }</td>
+			<c:choose>
+				<c:when test="${ivo.igdt_category == 1}">
+					<td>야채</td>
+				</c:when>
+				<c:when test="${ivo.igdt_category == 2}">
+					<td>고기</td>
+				</c:when><c:when test="${ivo.igdt_category == 3}">
+					<td>해산물</td>
+				</c:when>
+				<c:when test="${ivo.igdt_category == 4}">
+					<td>소스</td>
+				</c:when>
+				<c:otherwise>
+					<td>기타</td>
+				</c:otherwise>
+			</c:choose>
+		 <td>${ivo.igdt_name }</td>
+		 <td>${ivo.igdt_price }</td>
+		 <!-- 메인 이미지 파일  -->
+		 <td><img style = "width: 70px; height: 35px;" src="${pageContext.request.contextPath}/resources/upload/${ivo.igdt_main_img}"/></td>
+		 <!-- 보조 이미지 파일 -->
+		 <td><img style = "width: 70px; height: 35px;" src="${pageContext.request.contextPath}/resources/upload/${ivo.igdt_sub_img}"/></td>
+		 <td>${ivo.igdt_country }</td>
+		 <td>${ivo.igdt_info }</td>
+		 <td>${ivo.igdt_count }</td>
+		 <td>${ivo.igdt_tag }</td>
+		 <td>${ivo.igdt_size }</td>
+		</tr> 		  		
+	     </tbody>
+	  </table>
+         </div>
+        <!-- /.box-body -->
         </div>
-
-		<div class="btn-group" role="group" style="text-align:center; padding: 0px 0px 560px 15px;" aria-label="Basic mixed styles example">
-			<button type="button" class="btn btn-primary">수정하기</button>
-			<button type="button" class="btn btn-danger">삭제하기</button>
-			<button type="button" class="btn btn-success">목록으로</button>
-	    </div>
+       <!-- /.box -->
+       </div>
+       <div class="btn-group" role="group" style="text-align:center; padding: 0px 0px 560px 15px;" aria-label="Basic mixed styles example">
+	<button type="button" class="btn btn-primary">수정하기</button>
+	<button type="button" class="btn btn-danger">삭제하기</button>
+	<button type="button" class="btn btn-success">목록으로</button>
+       </div>
 	    
 <!-- 제이쿼리 -->
-	 <script type="text/javascript">
-	    $(document).ready(function(){
-	    	
-	    	// 1) 수정하기
-	    	$(".btn-primary").click(function(){
-	    		location.href = "./igdtUpdate?igdt_num=${ivo.igdt_num}&pageNum=${pageNum }";   
-	    		
-	    	});
-	    	
-	    	// 2) 삭제하기
-	    	$(".btn-danger").click(function(){	    		
-	    		location.href="${pageContext.request.contextPath }/igdtDelete?igdt_num=${ivo.igdt_num}";
-	    	});	    	
-	    	
-	    	// 3) 목록으로
-	    	$(".btn-success").click(function(){
-	    		location.href = "./igdtListAll?pageNum=${pageNum }"; 
-	    	});	    	
-	    	
-	    });	    
-	 </script>
+ <script type="text/javascript">
+    $(document).ready(function(){
+
+	// 1) 수정하기
+	$(".btn-primary").click(function(){
+		location.href = "./igdtUpdate?igdt_num=${ivo.igdt_num}&pageNum=${pageNum }";   
+
+	});
+
+	// 2) 삭제하기
+	$(".btn-danger").click(function(){	    		
+		location.href="${pageContext.request.contextPath }/igdtDelete?igdt_num=${ivo.igdt_num}";
+	});	    	
+
+	// 3) 목록으로
+	$(".btn-success").click(function(){
+		location.href = "./igdtListAll?pageNum=${pageNum }"; 
+	});	    	
+
+    });	    
+ </script>
 
  <%@ include file="footer.jsp"%>
