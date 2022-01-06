@@ -54,7 +54,6 @@ public class AdminDAOImpl implements AdminDAO {
 		return popularRList;
 	}
 	
-
 	
 	///////////////////////////////////// 회원 관리 ///////////////////////////////////////////////////////////////
 	
@@ -64,7 +63,7 @@ public class AdminDAOImpl implements AdminDAO {
 		
 		logger.info(" DAO : insertMember(mvo) 호출 ");
 
-		sqlSession.delete(namespace + ".insertMember", mvo);
+		sqlSession.insert(namespace + ".insertMember", mvo);
 
 		logger.info(" DAO : 멤버 더미데이터 입력완료");
 		
@@ -141,8 +140,6 @@ public class AdminDAOImpl implements AdminDAO {
 		sqlSession.delete(namespace+".mDelete", m_id);
 		
 		logger.info(" DAO : 회원정보 삭제 완료 ");
-		
-		
 	}
 	
 	///////////////////////////////////// 주문 관리 ///////////////////////////////////////////////////////////////
@@ -153,7 +150,7 @@ public class AdminDAOImpl implements AdminDAO {
 		
 		logger.info(" DAO : insertOrder(ovo) 호출 ");
 
-		sqlSession.delete(namespace + ".insertOrder", ovo);
+		sqlSession.insert(namespace + ".insertOrder", ovo);
 
 		logger.info(" DAO : 주문 더미데이터 입력완료");
 		
@@ -379,6 +376,7 @@ public class AdminDAOImpl implements AdminDAO {
 		return sqlSession.selectList(namespace + ".rBoardTopList");
 			
 	}
+	
 	// 인기 샐러드 순위
 	@Override
 	public List<recipeVO> getSalad_TopList() throws Exception {
