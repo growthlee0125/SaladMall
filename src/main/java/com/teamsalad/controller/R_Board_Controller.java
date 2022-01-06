@@ -36,23 +36,6 @@ public class R_Board_Controller {
 	@Inject
 	R_BoardService service;
 	
-	@RequestMapping("common__form")
-	public void sss() throws Exception{
-		
-	}
-	
-	@RequestMapping(value = "listTest", method = RequestMethod.GET)
-	public void tttt() throws Exception{
-		
-	}
-	
-	@RequestMapping(value = "listTest", method = RequestMethod.POST)
-	public void ttt(String[] data) throws Exception{
-		for(String s: data) {
-			System.out.println("테스트 값 :" + s);
-		}
-	}
-	
 //	게시물 리스트 가져오기
 //	http://localhost:8090/controller/R_Board/boardList
 	@RequestMapping(value = "/boardList", method = RequestMethod.GET)
@@ -73,8 +56,10 @@ public class R_Board_Controller {
 	
 //	게시물 자세히 보기
 	@RequestMapping(value = "/board_detail", method = RequestMethod.GET)
-	public void boardPage(@RequestParam("rcp_b_num")int rcp_b_num, Model model,  HttpSession session) throws Exception{
+	public void boardPage(@RequestParam("rcp_b_num")int rcp_b_num, Model model, HttpSession session) throws Exception{
+		
 		BoardMemberVO vo = service.getBoardDetail(rcp_b_num);
+		
 		List<BoardMemberVO> weeklyPopular = service.getWeeklyPopular();
 		
 		String m_id = (String)session.getAttribute("m_id");
@@ -86,17 +71,13 @@ public class R_Board_Controller {
 		if(m_id != null)
 			likeCheck = service.checkBoardLike(rcp_b_num, m_id);
 		
-		
 		service.checkBoardLike(rcp_b_num, null);
-		
-		System.out.println("controll��� Ȯ�� : " + vo);
-		System.out.println(" C : " + weeklyPopular.size());
-		System.out.println(" C : like = " + likeCheck);
-		
+			
 		String[] igdts = vo.getRecipe().getRcp_cmbnt().split(",");
 		for(int i = 0; i < igdts.length; i++) {
 			igdts[i] = service.getIgdtName(Integer.parseInt(igdts[i]));
 		}
+		
 		vo.getRecipe().setRcp_cmbnt(String.join("/", igdts));
 		
 		model.addAttribute("board", vo);
@@ -196,8 +177,10 @@ public class R_Board_Controller {
 		return "redirect:/R_Board/boardList";
 	}
 	
+	// 이미지 업로드 테스트
 	@RequestMapping(value = "Test", method = RequestMethod.POST)
 	public String fileTest(@RequestParam("rcp_b_img") MultipartFile[] img, HttpServletRequest request) throws Exception{
+		
 		System.out.println("파일 갯수 : " + img.length);
 		
 		ServletContext servletContext = request.getSession().getServletContext();
@@ -276,7 +259,7 @@ public class R_Board_Controller {
 	@RequestMapping(value = "searchData")
 	public @ResponseBody List<recipeBoardVO> searchTitle(String searchData) throws Exception{
 		
-		System.out.println("검색 데이터!!!!!!!!!!!!!!!!! : " + searchData);
+		System.out.println("검색 데이터 : " + searchData);
 		
 		List<recipeBoardVO> searchTitle = service.getSearchData("rcp_b_title", searchData);
 		
@@ -291,8 +274,8 @@ public class R_Board_Controller {
 	@RequestMapping(value = "searchTotal/{table}")
 	public @ResponseBody List<searchVO> searchTotal(@PathVariable String table, String searchData) throws Exception{
 		
-		System.out.println("검색 데이터!!!!!!!!!!!!!!!!! : " + searchData);
-		System.out.println("검색 테이블!!!!!!!!!!!!!!!!! : " + table);
+		System.out.println("검색 데이터 : " + searchData);
+		System.out.println("검색 테이블 : " + table);
 		
 		Object searchTitle = service.getSearchTotal(table, searchData);
 		
@@ -302,13 +285,14 @@ public class R_Board_Controller {
 	}
 	
 	private List<searchVO> objectToSearchVO(String table, Object o){
+		
 		List<searchVO> list = new ArrayList<searchVO>();
 		
 		switch (table) {
 		case "recipe_board":
 			List<recipeBoardVO> lvo = (List<recipeBoardVO>) o;
 			for(recipeBoardVO vo: lvo ) {
-				searchVO svo = new searchVO();
+				searchVO svo = new searchVO();	
 				
 				svo.setPrimaryKey(vo.getRcp_b_num());
 				svo.setTitle(vo.getRcp_b_title());
