@@ -12,7 +12,7 @@
                     <div class="breadcrumb__text">
                         <h2>샐러드 리뷰 작성</h2>
                         <div class="breadcrumb__option">
-                            <a href="./index.html">Home</a>
+                            <a href="/index">Home</a>
                             <span>Contact Us</span>
                         </div>
                     </div>
@@ -90,9 +90,7 @@
 				var rcp_num = $("#rcp_num").val();
 				var rcp_b_title = $("#rcp_b_title").val();
 				var rcp_b_content = $("#rcp_b_content").val();
-				
-				
-				
+		
 				if(rcp_num == ""){
 					alert("레시피를 선택해주세요");
 					document.getElementById('rcp_name').focus();
