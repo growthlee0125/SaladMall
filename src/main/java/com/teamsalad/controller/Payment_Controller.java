@@ -21,9 +21,7 @@ import com.teamsalad.service.PaymentService;
 @RequestMapping("/Payment/*")
 public class Payment_Controller {
 	
-	private static final Logger logger = 
-			LoggerFactory.getLogger(Payment_Controller.class);
-	
+	private static final Logger logger = LoggerFactory.getLogger(Payment_Controller.class);
 	
 	// 서비스객체 주입
 	@Inject
@@ -32,17 +30,20 @@ public class Payment_Controller {
 	@Inject
 	private M_LoginDAO mdao;
 	
-	
+	// 장바구니 페이지
 	@RequestMapping(value = "cart", method = RequestMethod.GET)
 	public void getPayment(HttpSession session, Model model) throws Exception {
+		
 		String m_id = (String)session.getAttribute("m_id");
 		
 		model.addAttribute("orderInfo", service.getOrderInfo(m_id));
 		model.addAttribute("member", mdao.readMember(m_id));
 	}
 	
+	// 장바구니 등록
 	@RequestMapping(value = "cart", method = RequestMethod.POST)
 	public void postPayment(HttpSession session, orderVO ovo) throws Exception {
+		
 		String m_id = (String)session.getAttribute("m_id");
 		
 		ovo.setM_id(m_id);
@@ -67,13 +68,5 @@ public class Payment_Controller {
 			service.deleteCart(svo.getCart().getCart_num());
 		}
 	}
-	
-	
-	
-	
-	
-	
-	
-	
 
 }
