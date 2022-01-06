@@ -41,28 +41,29 @@
      	<collection property="recipe" resultMap="recipe"/>
      </resultMap>
      
-<!--      필요 테이블 선택 가능 -->
-	 <resultMap type="Object" id="selectClass">
-	 	<discriminator javaType="String" column="table_name">
-	 		<case value="customer_board" resultType="customerBoardVO"/>
-	 		<case value="recipe_board" resultType="recipeBoardVO"/>
-	 		<case value="review_board" resultType="reviewBoardVO"/>
-	 		<case value="salad_ingredient" resultType="ingredientVO"/>
-	 		<case value="salad_recipe" resultType="recipeVO"/>
-	 	</discriminator>
-	 </resultMap>
+     <!--      필요 테이블 선택 가능 -->
+     <resultMap type="Object" id="selectClass">
+	<discriminator javaType="String" column="table_name">
+	 <case value="customer_board" resultType="customerBoardVO"/>
+	 <case value="recipe_board" resultType="recipeBoardVO"/>
+	 <case value="review_board" resultType="reviewBoardVO"/>
+	 <case value="salad_ingredient" resultType="ingredientVO"/>
+	 <case value="salad_recipe" resultType="recipeVO"/>
+	</discriminator>
+     </resultMap>
 	 
-	 <resultMap type="recipeBoardVO" id="searchRecipeBoard">
+     <resultMap type="recipeBoardVO" id="searchRecipeBoard">
      	<id property="rcp_b_num" column="num"/>
      	<id property="rcp_b_title" column="title"/>
      </resultMap>
-<!--      필요 테이블 선택 가능 -->
      
+     <!-- 레시피 게시판 입력-->
      <insert id="R_Board_regist">
      	insert into recipe_board (m_id, rcp_num, rcp_b_title, rcp_b_content, rcp_b_thumbnail, rcp_b_img1, rcp_b_img2, rcp_b_img3)
      	values (#{m_id}, #{rcp_num}, #{rcp_b_title}, #{rcp_b_content}, #{rcp_b_thumbnail}, #{rcp_b_img1}, #{rcp_b_img2}, #{rcp_b_img3})
      </insert>
      
+     <!-- 레시피 게시판 수정--> 
      <update id="R_Board_modify">
      	update recipe_board
      	set rcp_b_content = #{rcp_b_content}, rcp_b_title = #{rcp_b_title}, rcp_b_thumbnail = #{rcp_b_thumbnail},
@@ -70,11 +71,13 @@
      	where rcp_b_num = #{rcp_b_num}
      </update>
      
+     <!-- 레시피 게시판 삭제-->	 
      <delete id="R_Board_delete">
      	delete from recipe_board
      	where rcp_b_num = #{rcp_b_num}
      </delete>
      
+     <!-- 레시피 게시판 상세 조회--> 
      <select id="R_Board_detail" resultMap="boardmember">
      	select *
      	from recipe_board 
@@ -83,12 +86,14 @@
      	where rcp_b_num = #{rcp_b_num}
      </select>
      
+     <!-- 레시피 조회--> 
      <select id="R_BoardgetRecipe" resultType="recipeVO">
      	select *
      	from salad_recipe
      	where rcp_num=#{rcp_num}
      </select>
      
+     <!-- 레시피 게시판 페이징 처리-->
      <select id="R_Board_listPage" resultMap="boardmember">
      	select *
      	from recipe_board
@@ -97,26 +102,30 @@
      	limit #{page}, #{total}
      </select>
      
+     <!-- 레시피 게시판 재료 이름 조회--> 	 
      <select id="R_Board_getIgdtName" resultType="String">
      	select igdt_name
-		from salad_ingredient
-		where igdt_num = #{igdt_num};
+	from salad_ingredient
+	where igdt_num = #{igdt_num};
      </select>
      
+     <!-- 레시피 게시판 글 수 조회-->
      <select id="countBoards" resultType="int">
 	   select count(*) 
 	   from recipe_board
-	</select>
+     </select>
      
+     <!-- 레시피 게시판 페이징 조회-->
      <select id="bListCri" resultMap="boardmember">
 	   select * 
 	   from recipe_board
 	   natural join tbl_member
-       natural join salad_recipe
+           natural join salad_recipe
 	   limit #{skip},#{pageAmount}	  
-	</select>
+    </select>
      
-     <select id="R_Board_weeklyPopular" resultMap="boardmember">
+    <!-- 레시피 게시판 주간 인기 조회-->	 
+    <select id="R_Board_weeklyPopular" resultMap="boardmember">
      	select *
      	from recipe_board
      	natural join salad_recipe
@@ -124,41 +133,48 @@
      	limit 0,3
      </select>
      
+     <!-- 레시피 게시판 검색결과 --> 	 
      <select id="R_Board_listTotal" resultMap="boardmember">
      	select *
      	from recipe_board
      	natural join tbl_member
      	natural join salad_recipe
      </select>
-     
+	 
+     <!-- 레시피 게시판 좋아요 조회-->
      <select id="R_Board_likeCheck" resultType="int">
      	select count(*)
      	from rcp_b_like
      	where rcp_b_num = #{rcp_b_num} and m_id = #{m_id}
      </select>
      
+     <!-- 레시피 게시판 좋아요 업데이트--> 
      <update id="R_Board_likeUpdate">
      	update recipe_board
      	set rcp_b_like_count = rcp_b_like_count + 1
      	where rcp_b_num = #{rcp_b_num}
      </update>
      
+     <!-- 레시피 게시판 좋아요 입력-->	 
      <insert id="R_Board_likeInsert" >
      	insert into rcp_b_like (rcp_b_num, m_id)
      	values (#{rcp_b_num}, #{m_id}) 
      </insert>
      
+     <!-- 레시피 게시판 좋아요 삭제-->	 
      <delete id="R_Board_likeDelete">
      	delete from rcp_b_like
      	where rcp_b_num = #{rcp_b_num} and m_id=#{m_id}
      </delete>
      
+     <!-- 레시피 게시판 좋아요 감소-->  	 
      <update id="R_Board_likeDiscount">
      	update recipe_board
      	set rcp_b_like_count = rcp_b_like_count - 1
      	where rcp_b_num = #{rcp_b_num}
      </update>
      
+     <!-- 레시피 게시판 댓글 리스트-->	 
      <select id="R_Board_listReply" resultType="replyVO">
      	select * 
      	from tbl_reply
@@ -166,12 +182,14 @@
      	and reply_b_main_num = #{reply_b_main_num}
      </select>
      
+     <!-- 레시피 게시판 댓글 조회 -->	 
      <select id="R_Board_reply" resultType="replyVO">
      	select *
      	from tbl_reply
      	where rcp_b_num = #{rcp_b_num}
      </select>
      
+     <!-- 레시피 게시판 댓글 입력 --> 
      <insert id="R_Board_addReply">
      	insert into tbl_reply
      	values (m_id=#{m_id}, reply_b_type=#{reply_b_type}, 
@@ -179,28 +197,33 @@
      	reply_b_content=#{reply_b_content}, reply_b_ip=#{reply_b_ip})
      </insert>
      
+     <!-- 레시피 게시판 댓글 삭제-->	 
      <delete id="R_Board_deleteReply">
      	delete from tbl_reply
      	where reply_b_num = #{reply_b_num}
      </delete>
      
+     <!-- 레시피 게시판 댓글 수정-->	 
      <update id="R_Board_modifyReply">
      	update tbl_reply
      	set reply_b_content = #{reply_b_content}
      	where reply_b_num = #{reply_b_num}
      </update>
      
+     <!-- 디비 컬럼 조회-->	 
      <select id="R_Board_getDBColumn" resultType="String">
      	SELECT column_name as 'columns' FROM information_schema.columns
 		WHERE table_name='recipe_board'
      </select>
-     
+	 
+     <!-- 레시피 게시판 서치 데이터 글 번호 조회 -->
      <select id="R_Board_searchData" resultType="int">
      	select rcp_b_num
      	from recipe_board
      	where ${column} like #{data}
      </select>
-     
+	 
+     <!-- 레시피 게시판 서치 데이터 정보 조회 -->
      <select id="R_Board_searchNum" resultType="recipeBoardVO">
      	select *
      	from recipe_board
@@ -210,28 +233,29 @@
      	</foreach>
      </select>
      
-     
-<!-- 필요 테이블 검색 기능 -->
+     <!-- 필요 테이블 검색 기능 -->
      <select id="Total_getPrimaryKeyName" resultType="String">
 	    SELECT COLUMN_NAME
-		FROM INFORMATION_SCHEMA.KEY_COLUMN_USAGE
-		WHERE TABLE_NAME = #{table_name}
-		AND CONSTRAINT_NAME = 'PRIMARY'
+	    FROM INFORMATION_SCHEMA.KEY_COLUMN_USAGE
+	    WHERE TABLE_NAME = #{table_name}
+	    AND CONSTRAINT_NAME = 'PRIMARY'
      </select>
      
+     <!-- 컬럼 이름 조회 -->
      <select id="Total_getDBColumn" resultType="String">
      	SELECT column_name as 'columns' FROM information_schema.columns
-		WHERE table_name=#{table_name}
+	WHERE table_name=#{table_name}
      </select>
-     
+	 
+     <!-- 프라이머리 키 조회-->
      <select id="Total_searchPrimaryKey" resultType="int">
      	select ${primary_key}
      	from ${table_name}
      	where ${column} like #{data}
      </select>
      
-<!--      테이블마다 이 부분만 추가하면 될듯함 -->
-<!-- customer_board 검색 -->
+     <!--      테이블마다 이 부분만 추가하면 될듯함 -->
+     <!-- customer_board 검색 -->
      <select id="Total_searchcustomer_board" resultType="customerBoardVO">
      	select *
      	from ${table_name}
@@ -241,7 +265,7 @@
      	</foreach>
      </select>
      
-<!--      recipe_board 검색 -->
+     <!--      recipe_board 검색 -->
      <select id="Total_searchrecipe_board" resultType="recipeBoardVO">
      	select *
      	from ${table_name}
@@ -251,7 +275,7 @@
      	</foreach>
      </select>
      
-<!--      review_board 검색 -->
+     <!--      review_board 검색 -->
      <select id="Total_searchreview_board" resultType="reviewBoardVO">
      	select *
      	from ${table_name}
@@ -261,7 +285,7 @@
      	</foreach>
      </select>
      
-<!--      salad_ingredient 검색 -->
+     <!--      salad_ingredient 검색 -->
      <select id="Total_searchsalad_ingredient" resultType="ingredientVO">
      	select *
      	from ${table_name}
@@ -271,7 +295,7 @@
      	</foreach>
      </select>
      
-<!--      salad_recipe 검색 -->
+     <!--      salad_recipe 검색 -->
      <select id="Total_searchsalad_recipe" resultType="recipeVO">
      	select *
      	from ${table_name}
@@ -300,5 +324,5 @@
            #{num}
         </foreach>
      </select>
-<!-- 필요 테이블 검색 기능 -->
+	 
  </mapper>
