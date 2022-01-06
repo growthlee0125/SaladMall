@@ -42,22 +42,22 @@ list-style: none;
                     <div class="col-lg-6 col-md-6">
                     	<label>문의유형</label>
                         <c:choose>
- 							<c:when test="${CS_vo.customer_b_type == 1}">
- 							<input type="text" value="상품 관련 문의" readonly="readonly">
-				 			</c:when>
-				 			<c:when test="${CS_vo.customer_b_type == 2}">
-    						<input type="text" value="주문 관련 문의" readonly="readonly">
-				 			</c:when>
-				 			<c:when test="${CS_vo.customer_b_type == 3}">
-    						<input type="text" value="서비스 관련 문의" readonly="readonly">
-				 			</c:when>
-				 			<c:when test="${CS_vo.customer_b_type == 4}">
-    						<input type="text" value="고객 의견" readonly="readonly">
-				 			</c:when>
-				 			<c:otherwise>
-				 			<input type="text" value="기타 문의" readonly="readonly">
-				 			</c:otherwise>
-					</c:choose> 
+				<c:when test="${CS_vo.customer_b_type == 1}">
+				<input type="text" value="상품 관련 문의" readonly="readonly">
+				</c:when>
+				<c:when test="${CS_vo.customer_b_type == 2}">
+				<input type="text" value="주문 관련 문의" readonly="readonly">
+				</c:when>
+				<c:when test="${CS_vo.customer_b_type == 3}">
+				<input type="text" value="서비스 관련 문의" readonly="readonly">
+				</c:when>
+				<c:when test="${CS_vo.customer_b_type == 4}">
+				<input type="text" value="고객 의견" readonly="readonly">
+				</c:when>
+				<c:otherwise>
+				<input type="text" value="기타 문의" readonly="readonly">
+				</c:otherwise>
+			</c:choose> 
                     </div>
                     <div class="col-lg-6 col-md-6">
                         <label>글쓴이</label>
@@ -80,14 +80,14 @@ list-style: none;
             </form>
             <!-- 게시글 버튼 제어 영역 ------------------------------------------------------------------------>
             <div class="d-flex justify-content-center">
-				<!-- 본인 글에만 수정하기 삭제하기 활성화 -->
-				<button type="button" class="site-btn_green" id="CSB_btn_list">목록으로</button>
-				<c:if test="${m_id == CS_vo.m_id || m_id == 'admin' }">
-				<button type="button" class="site-btn_white" id="CSB_btn_modify">수정하기</button>
-				<button type="button" class="site-btn_gray" id="CSB_btn_delete">삭제하기</button>
-				</c:if>
-			</div>					
-			</div>
+		<!-- 본인 글에만 수정하기 삭제하기 활성화 -->
+		<button type="button" class="site-btn_green" id="CSB_btn_list">목록으로</button>
+		<c:if test="${m_id == CS_vo.m_id || m_id == 'admin' }">
+			<button type="button" class="site-btn_white" id="CSB_btn_modify">수정하기</button>
+			<button type="button" class="site-btn_gray" id="CSB_btn_delete">삭제하기</button>
+		</c:if>
+	     </div>					
+	  </div>
         </div>
 	<!-- 댓글 작성 구역 ------------------------------------------------------------------------>
 	<div class="col-sm-10" style="padding: 20px 60px 80px 350px;">
@@ -130,7 +130,7 @@ list-style: none;
 				<div class="modal-body">
 					<div class="form-group">
 						<label for="reply_b_num">댓글 번호</label> 
-						<input class="form-control"	id="reply_b_num" name="reply_b_num" readonly>
+						<input class="form-control" id="reply_b_num" name="reply_b_num" readonly>
 					</div>
 					<div class="form-group">
 						<label for="reply_text">댓글 내용</label> 
@@ -238,7 +238,7 @@ list-style: none;
 
 				var reply_b_content = $("#new_reply_b_content");
 				var reply_m_id = $("#new_reply_m_id");
-			    var reply_b_contentVal = reply_b_content.val();
+			        var reply_b_contentVal = reply_b_content.val();
 				var reply_m_idVal = reply_m_id.val();
 
 				if (reply_m_idVal == "") {
@@ -268,7 +268,7 @@ list-style: none;
 					}
 				
 					// 댓글 목록 출력 함수 호출 
-				    getReplies();
+				        getReplies();
 
 					// 댓글 내용 초기화 
 					reply_b_content.val("");
@@ -290,7 +290,8 @@ list-style: none;
 			$("#reply_b_content").val(reply_b_content);
 			$("#reply_m_id").val(reply_m_id);
 		});
-
+		
+		// 삭제하기
 		$(".modalDelBtn").on("click", function() {
 			
 			// 댓글 번호 
@@ -306,7 +307,7 @@ list-style: none;
 
 			// AJAX통신 : DELETE 
 
-		$.ajax({
+			$.ajax({
 				type : "delete",
 				url : "${pageContext.request.contextPath }/Reply/" + reply_b_num,
 				headers : {
@@ -332,7 +333,7 @@ list-style: none;
 
 	});
 
-		// 댓글 수정
+	// 댓글 수정
 	$(".modalModBtn").on("click", function() {
 
 		var session_id = $('#session_id').val();
