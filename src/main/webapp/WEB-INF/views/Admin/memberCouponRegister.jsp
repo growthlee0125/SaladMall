@@ -18,10 +18,10 @@
 				<div class="form-group">
 					<label for="coupon_id">쿠폰 아이디</label>
 					<select class="form-control" name="m_coupon" id="m_coupon" >
-					<c:forEach var="cvo" items="${couponListAll }">
-	                    <option value="${cvo.coupon_id }">${cvo.coupon_id }</option>
-					</c:forEach>
-                	</select> 
+						<c:forEach var="cvo" items="${couponListAll }">
+						 <option value="${cvo.coupon_id }">${cvo.coupon_id }</option>
+						</c:forEach>
+                			</select> 
 				</div>
 				<div class="form-group">
 					<label for="coupon_name">해당 아이디</label> 
