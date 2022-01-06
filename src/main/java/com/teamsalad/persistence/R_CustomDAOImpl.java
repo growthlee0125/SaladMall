@@ -27,14 +27,17 @@ public class R_CustomDAOImpl implements R_CustomDAO{
 	// Mapper 파일 구분값
 	private static final String namespace = "com.teamsalad.mapper.R_CustomMapper";
 	
+	// 재료 리스트 불러오기
 	@Override
 	public List<ingredientVO> listCategory(int category) throws Exception {
+		
 		logger.info(" listAll(int category) 호출 ");
 		
 		// mapper에 동작호출
 		return sqlSession.selectList(namespace+".listAll",category);
 	}
 	
+	// 커스텀 확인
 	@Override
 	public String chkCustom(String m_id) throws Exception {
 		// id에 해당하는 커스텀이 있는지 확인
@@ -55,8 +58,10 @@ public class R_CustomDAOImpl implements R_CustomDAO{
 		
 	}
 	
+	// 커스텀이 없을 경우
 	@Override
 	public void newCustom(String m_id) throws Exception {
+		
 		// id에 해당하는 커스텀이 없을경우 실행
 		logger.info(" newCustom(String m_id) 호출 ");
 		
@@ -65,6 +70,7 @@ public class R_CustomDAOImpl implements R_CustomDAO{
 		
 	}
 	
+	// 커스텀이 있을 경우
 	@Override
 	public void resetCustom(String m_id) throws Exception {
 		// id에 해당하는 커스텀이 있을경우 실행
@@ -75,19 +81,21 @@ public class R_CustomDAOImpl implements R_CustomDAO{
 		
 	}
 	
+	// 커스텀 불러오기
 	@Override
 	public String showCustom(String m_id) throws Exception {
+		
 		// id에 해당하는 커스텀 불러오기
 		logger.info(" showCustom(int m_id) 호출");
 		
 		// mapper에 동작 호출
-		
-		
 		return sqlSession.selectOne(namespace+".showcustom", m_id);
 	}
 	
+	// 커스텀 등록 -1
 	@Override
 	public void addFirstCustom(customVO vo) throws Exception {
+		
 		logger.info(" addFirstCustom() 호출 ");
 		
 		// mapper에 동작 호출
@@ -95,16 +103,20 @@ public class R_CustomDAOImpl implements R_CustomDAO{
 		
 	}
 	
+	// 커스텀 등록
 	@Override
 	public void addCustom(customVO vo) throws Exception {
+		
 		logger.info(" addCustom() 호출 ");
 		
 		// mapper에 동작 호출
 		sqlSession.update(namespace+".addcustom", vo);
 	}
 	
+	// 재료 리스트 불러오기
 	@Override
 	public List<ingredientVO> list(ArrayList<String> igdt_numList) throws Exception {
+		
 		logger.info(" list() 호출 ");
 		
 		logger.info(" igdt_numList값 확인 "+igdt_numList);
@@ -117,8 +129,10 @@ public class R_CustomDAOImpl implements R_CustomDAO{
 		return sqlSession.selectList(namespace+".listigdt_num",map);
 	}
 	
+	// 레시피 체크
 	@Override
 	public recipeVO chkRecipe(String rcp_cmbnt) throws Exception {
+		
 		logger.info(" chkRecipe() 호출 ");
 		
 		// mapper에 동작 호출
@@ -126,12 +140,13 @@ public class R_CustomDAOImpl implements R_CustomDAO{
 		
 	}
 	
+	// 레시피 등록 및 가격 설정
 	@Override
 	public void addRecipe(recipeVO vo) throws Exception {
+		
 		logger.info(" addRecipe() 호출 ");
 		
 		// 레시피 가격 설정
-		
 		// mybatis foreach 사용 준비
 		// mapper에 mybatis foreach 준비
 		ArrayList<String> igdt_numList = new ArrayList<String>();
@@ -147,12 +162,13 @@ public class R_CustomDAOImpl implements R_CustomDAO{
 		vo.setRcp_price(sqlSession.selectOne(namespace+".pricecustom",map)+"");
 		
 		// mapper에 동작 호출
-		sqlSession.insert(namespace+".addrecipe",vo);
-		
+		sqlSession.insert(namespace+".addrecipe",vo);	
 	}
 	
+	// 레시피 찾기
 	@Override
 	public recipeVO findRecipe(String rcp_cmbnt) throws Exception {
+		
 		logger.info(" findRecipe() 호출 ");
 		
 		if(sqlSession.selectOne(namespace+".findrecipe", rcp_cmbnt)==null) {
@@ -181,8 +197,10 @@ public class R_CustomDAOImpl implements R_CustomDAO{
 		 return sqlSession.selectOne(namespace+".findrecipe", rcp_cmbnt);
 	}
 	
+	// 장바구니 체크
 	@Override
 	public String chkCart(int rcp_num) throws Exception {
+		
 		logger.info( "chkCart() 호출" );
 		
 		// mapper에 동작 호출
@@ -190,8 +208,10 @@ public class R_CustomDAOImpl implements R_CustomDAO{
 		
 	}
 	
+	// 수량 업데이트
 	@Override
 	public void updateCartAmount(int rcp_num) throws Exception {
+		
 		logger.info( " addCartAmount() 호출");
 		
 		// mapper에 동작 호출
@@ -199,8 +219,10 @@ public class R_CustomDAOImpl implements R_CustomDAO{
 		
 	}
 	
+	// 카트 등록
 	@Override
 	public void addCart(cartVO vo) throws Exception {
+		
 		logger.info(" addCart() 호출 ");
 		
 		// mapper에 동작 호출
