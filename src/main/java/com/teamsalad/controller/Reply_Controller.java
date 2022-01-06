@@ -40,18 +40,22 @@ public class Reply_Controller {
 		
 		logger.info(" C : Register() 호출 " );
 		
+		// ip 변수 선언
 		InetAddress local;
-		
 		String ip = null;
 		
+		// 응답 변수
 		ResponseEntity<String> entity = null;
 		
+		// 세션 제어
 		String id = (String)session.getAttribute("m_id");
 		
+		// 관리자 댓글
 		if(id.equals("admin")) {			
 			service.adminUpdate(rvo);
 		}
 		
+		// ip 가져오기
 		try {
 			local = InetAddress.getLocalHost();
 			ip = local.getHostAddress();
@@ -59,6 +63,7 @@ public class Reply_Controller {
 			e1.printStackTrace();
 		} 
 		
+		// 댓글 등록
 		try { 
 			rvo.setReply_b_ip(ip);
 			service.create(rvo);
@@ -110,7 +115,6 @@ public class Reply_Controller {
 		ResponseEntity<String> entity = null;
 		
 		try {
-			
 			service.delete(reply_b_num);
 			entity = new ResponseEntity<String>("deleteSuccess", HttpStatus.OK);
 		} catch (Exception e) {
@@ -124,7 +128,7 @@ public class Reply_Controller {
 	// 댓글 리스트 페이징 처리
 	@RequestMapping(value = "paging/{reply_b_main_num}/{pageNum}", method = RequestMethod.GET)
 	public ResponseEntity<Map<String, Object>> listPaging(@PathVariable("reply_b_main_num") Integer reply_b_main_num, 
-														  @PathVariable("pageNum") Integer pageNum) {
+							      @PathVariable("pageNum") Integer pageNum) {
 		
 		ResponseEntity<Map<String, Object>> entity = null;
 		
@@ -132,7 +136,6 @@ public class Reply_Controller {
 		System.out.println(pageNum + "글페이지번호");
 		
 		try {
-			
 			Criteria criteria = new Criteria();
 			criteria.setPageNum(pageNum);
 			
