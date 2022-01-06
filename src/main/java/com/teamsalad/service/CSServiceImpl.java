@@ -27,8 +27,9 @@ public class CSServiceImpl implements CSService {
 	// 게시판 전체 글 불러오기
 	@Override
 	public List<customerBoardVO> listALL() throws Exception {
+		
 		logger.info(" S : listALL() 호출 -> DAO-");
-		logger.info(" S : DAO 처리 완료! 정보 저장후 컨트롤러 이동");
+		
 		return csdao.listALL();
 	}
 	
