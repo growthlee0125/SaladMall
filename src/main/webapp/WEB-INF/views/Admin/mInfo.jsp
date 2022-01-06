@@ -36,35 +36,35 @@ text-align: center;
                   <th>쿠폰정보</th>
                 </tr>
 		<tr>
-			<td>${mvo.m_id }</td>
-			<td>${mvo.m_name }</td>
-			<td>${mvo.m_email }</td>
-			<td>${mvo.m_zip }</td>
-			<td>${mvo.m_addr1 }</td>
-			<td>${mvo.m_addr2 }</td>
-			<td>${mvo.m_phone }</td>
-			<td>${mvo.m_regdate }</td>
-			<c:choose>
-				<c:when test="${mvo.m_grade == 1}">
-						<td><span class="label label-success">Silver</span></td>
-				</c:when>
-				<c:when test="${mvo.m_grade == 2}">
-						<td><span class="label label-warning">Gold</span></td>
-				</c:when>
-				<c:when test="${mvo.m_grade == 3}">
-						<td><span class="label label-primary">VIP</span></td>
-				</c:when>
-				<c:when test="${mvo.m_grade == 4}">
-						<td><span class="label label-danger">VVIP</span></td>
-				</c:when>
-				<c:otherwise>
-						<td><span class="label label-danger">잘못된 등급</span></td>
-				</c:otherwise>
-			</c:choose>  						
-			<td>${mvo.m_totalAmount }</td>
-			<td>${mvo.m_attendance }</td>
-			<td>${mvo.m_warning }</td>
-			<td>${cvo.coupon_name }</td>
+		  <td>${mvo.m_id }</td>
+		  <td>${mvo.m_name }</td>
+		  <td>${mvo.m_email }</td>
+		  <td>${mvo.m_zip }</td>
+		  <td>${mvo.m_addr1 }</td>
+		  <td>${mvo.m_addr2 }</td>
+		  <td>${mvo.m_phone }</td>
+		  <td>${mvo.m_regdate }</td>
+		  <c:choose>
+			<c:when test="${mvo.m_grade == 1}">
+					<td><span class="label label-success">Silver</span></td>
+			</c:when>
+			<c:when test="${mvo.m_grade == 2}">
+					<td><span class="label label-warning">Gold</span></td>
+			</c:when>
+			<c:when test="${mvo.m_grade == 3}">
+					<td><span class="label label-primary">VIP</span></td>
+			</c:when>
+			<c:when test="${mvo.m_grade == 4}">
+					<td><span class="label label-danger">VVIP</span></td>
+			</c:when>
+			<c:otherwise>
+					<td><span class="label label-danger">잘못된 등급</span></td>
+			</c:otherwise>
+		  </c:choose>  						
+		  <td>${mvo.m_totalAmount }</td>
+		  <td>${mvo.m_attendance }</td>
+		  <td>${mvo.m_warning }</td>
+		  <td>${cvo.coupon_name }</td>
    	    	 </tr> 		  		
               </tbody>
 	     </table>
