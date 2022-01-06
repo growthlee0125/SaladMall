@@ -36,7 +36,6 @@ public class Admin_Controller {
 	@Inject
 	private AdminService service;
 
-	
 	// 관리자 메인 페이지(GET)
 	// http://localhost:8080/Admin/main
 	@RequestMapping(value = "/main", method = RequestMethod.GET)
@@ -45,14 +44,17 @@ public class Admin_Controller {
 		logger.info(" C: adminMainGET() 호출");
 
 		String admin_id = (String) session.getAttribute("m_id");
+		
 		int pageNum = 1;
 
 		if (admin_id == null || !admin_id.equals("admin")) {
 			return "redirect:/Admin/notAdminAccess";
 		}
-
+		// 최근 주문 리스트 전달
 		List<orderVO> recentOList = service.getRecentOrder();
+		// 인기 레시피 리스트 전달
 		List<recipeBoardVO> popularRList = service.getPopularRecipe();
+		
 		model.addAttribute("pageNum", pageNum);
 		model.addAttribute("recentOList", recentOList);
 		model.addAttribute("popularRList", popularRList);
@@ -63,8 +65,8 @@ public class Admin_Controller {
 	// 권한없는 잘못된 접근(GET)
 	@RequestMapping(value = "/notAdminAccess", method = RequestMethod.GET)
 	public void notAdminAccessGET() throws Exception {
-		logger.info(" notAdminAccessGET() 호출 ");
 		
+		logger.info(" notAdminAccessGET() 호출 ");
 	}
 	
 	// 관리자 정보 등록 성공(GET)
@@ -72,7 +74,6 @@ public class Admin_Controller {
 	public void registerSuccessGET() throws Exception {
 		
 		logger.info(" registerSuccessGET() 호출 ");
-		
 	}
 
 	////////////////////////////////////////////////////////////회원정보관련/////////////////////////////////////////////////////////////////////////
@@ -114,6 +115,8 @@ public class Admin_Controller {
 		logger.info(" C: memberInfoGET() 호출");
 		
 		memberVO mvo = service.getMInfo(m_id);
+		
+		// 쿠폰 정보도 같이 전달
 		int coupon_id = mvo.getM_coupon();
 		
 		model.addAttribute("cvo", service.getCouponInfo(coupon_id));
@@ -139,7 +142,7 @@ public class Admin_Controller {
 		model.addAttribute("pageNum", pageNum);
 
 		return "/Admin/mInfo";
-		}
+	}
 	
 
 	// 개별 회원 정보 수정(GET)
@@ -227,6 +230,7 @@ public class Admin_Controller {
 
 		orderVO ovo = service.getOInfo(order_num);
 		
+		// 주문정보 속 쿠폰정보 전달
 		int coupon_id = ovo.getCoupon_id();
 		
 		model.addAttribute("cvo", service.getCouponInfo(coupon_id));
@@ -349,7 +353,6 @@ public class Admin_Controller {
 
 		ServletContext servletContext = request.getSession().getServletContext();
 		String uploadFolder = servletContext.getRealPath("./resources/upload");
-		logger.info(uploadFolder);
 
 		// 폴더생성
 		File uploadPath = new File(uploadFolder);
@@ -417,8 +420,6 @@ public class Admin_Controller {
 	public String igdtUpdatePOST(ingredientVO ivo) throws Exception {
 
 		logger.info(" C: igdtUpdatePOST() 호출 ");
-		
-		System.out.println(ivo);
 		
 		service.updateIngredient(ivo);
 
@@ -498,8 +499,6 @@ public class Admin_Controller {
 	public String couponMListGET(Model model, Integer coupon_id) throws Exception {
 		
 		logger.info(" C: couponMListGET() 호출");
-		
-		logger.info("쿠폰아이디 컨트롤러"+coupon_id);
 
 		model.addAttribute("couponMList", service.getCouponMList(coupon_id));
 
@@ -533,6 +532,7 @@ public class Admin_Controller {
 		logger.info(" C: couponUpdatePOST() 호출 ");
 		
 		service.updateCoupon(cvo);
+		
 		logger.info(" 재료 재고 정보 수정 완료");
 
 		return "redirect:/Admin/couponListAll?pageNum="+pageNum;
@@ -575,13 +575,12 @@ public class Admin_Controller {
 	public String couponRegisterPOST(couponVO cvo) throws Exception {
 
 		logger.info("couponRegisterPOST() 호출");
+		
 		Random random = new Random();
 		
 		int coupon_id = random.nextInt(88888) + 11111;
 		
 		cvo.setCoupon_id(coupon_id);
-		System.out.println(coupon_id);
-
 		service.couponRegister(cvo);
 
 		return "redirect:/Admin/registerSuccess";
@@ -636,8 +635,7 @@ public class Admin_Controller {
 		model.addAttribute("RBoard_TopList", service.getR_Board_TopList());
 
 		return "/Admin/RBoard_TopList";
-		}
-	
+	}
 	
 	// 주간 샐러드 판매량 top 10 출력(GET)
 	@RequestMapping(value = "/Salad_TopList", method = RequestMethod.GET)
@@ -655,6 +653,6 @@ public class Admin_Controller {
 		model.addAttribute("Salad_TopList", service.getSalad_TopList());
 
 		return "/Admin/Salad_TopList";
-		}
+	}
 
 }
