@@ -44,7 +44,6 @@ public class PaymentServiceImpl implements PaymentService {
 	// 아이디로 카트정보, 멤버 정보, 레시피 정보 가져오기
 	@Override
 	public List<SaladCartVO> getOrderInfo(String m_id) throws Exception {
-		// TODO Auto-generated method stub
 		
 		System.out.println("service getorderinfo : ");
 		
@@ -59,10 +58,10 @@ public class PaymentServiceImpl implements PaymentService {
 	public int getOrderPayNum() throws Exception{
 		return pdao.getOrderPayNum();
 	}
-
+	
+	// 카트정보 삭제
 	@Override
 	public void deleteCart(int cart_num) throws Exception {
-		// TODO Auto-generated method stub
 		pdao.deleteCart(cart_num);
 	}
 
