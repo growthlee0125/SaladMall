@@ -17,7 +17,6 @@ import com.teamsalad.domain.orderVO;
 @Repository
 public class PaymentDAOImpl implements PaymentDAO {
  
-	// 디비연결처리 (의존주입)
 	@Inject
 	//@Autowired
 	private SqlSession sqlSession;
@@ -40,7 +39,6 @@ public class PaymentDAOImpl implements PaymentDAO {
 	// 아이디로 카트정보, 멤버 정보, 레시피 정보 가져오기
 	@Override
 	public List<SaladCartVO> getOrderInfo(String m_id) throws Exception {
-		// TODO Auto-generated method stub
 
 		System.out.println("getOrderInfo Start : ");
 		
@@ -54,6 +52,7 @@ public class PaymentDAOImpl implements PaymentDAO {
 
 	// 주문 정보 저장하기
 	public void orderInfo(orderVO vo) throws Exception{
+		
 		System.out.println("orderInfo Start : ");
 		
 		sqlSession.insert(namespace+".orderInfo",vo);
@@ -66,14 +65,14 @@ public class PaymentDAOImpl implements PaymentDAO {
 		
 		Integer i = sqlSession.selectOne(namespace+".getOrderPayNum");
 		
-		if(i == null) i =0;
+		if(i == null) i = 0;
 		
 		return i+1;
 	}
-
+	
+	// 주문정보 삭제하기
 	@Override
 	public void deleteCart(int cart_num) throws Exception {
-		// TODO Auto-generated method stub
 		
 		sqlSession.delete(namespace+".cartDelete", cart_num);
 	}
