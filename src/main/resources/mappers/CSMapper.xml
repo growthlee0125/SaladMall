@@ -31,7 +31,7 @@
 	   from customer_board
 	</select>
 
-	<!-- 게시판 글쓰기 sql구문 -->
+	<!-- 게시판 글쓰기 -->
 	<insert id="create">
 		insert into customer_board 
 		(customer_b_type, customer_b_title, m_id, customer_b_content, order_num) 
@@ -58,8 +58,8 @@
 	<!-- 댓글 정보 가져오기 -->
 	<select id="getReply" resultType="replyVO">
 		select * from tbl_reply 
-        where
-        reply_b_main_num = #{reply_b_main_num} and reply_m_id={reply_m_id}			
+        	where
+        	reply_b_main_num = #{reply_b_main_num} and reply_m_id={reply_m_id}			
 	</select>
 
 	<!-- 게시판 특정글 수정 -->
@@ -81,5 +81,4 @@
 
 	
 
-</mapper>			
-	
+</mapper>				
