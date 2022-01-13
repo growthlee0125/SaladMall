@@ -85,7 +85,8 @@ https://www.erdcloud.com/d/CSdHd4s6yZQC4GwdW
 
 ## :thought_balloon: 회고 및 느낀점
 
-:zap: 개인프로젝트 때 Model1 구조를 활용하였다면, 이번 팀프로젝트에서는 Model2 구조를 활용하여 쇼핑몰을 구현하였다. <br>
+:zap: 개인프로젝트 때 Model1 구조를 활용하였다면, <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 이번 팀프로젝트에서는 Model2 구조를 활용하여 쇼핑몰을 구현하였다. <br>
 
 :zap: 개인프로젝트와 달리 팀프로젝트는 팀원들 의견을 모으는 것부터 작업의 속도를 맞추는 것까지 <br> 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 개발 외에도 신경써야 할 부분이 굉장히 많았다.          
