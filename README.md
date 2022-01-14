@@ -40,7 +40,10 @@
 ![01 0910_UML](https://user-images.githubusercontent.com/92525310/149267222-dd2da9fa-2b6c-419e-98c2-a9daccacff22.jpg)
 
 ### 💾 디비 설계 
-https://www.erdcloud.com/d/CSdHd4s6yZQC4GwdW
+
+![image](https://user-images.githubusercontent.com/92525310/149462199-4428181a-83e9-49f1-aa2a-f9da719a58c0.png)
+
+### 🚩 디비 설계도 주소 - https://www.erdcloud.com/d/CSdHd4s6yZQC4GwdW
  
 ## 💻 주요 기능
 
