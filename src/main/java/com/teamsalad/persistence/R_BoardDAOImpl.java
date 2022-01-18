@@ -64,7 +64,7 @@ public class R_BoardDAOImpl implements R_BoardDAO {
 		
 		logger.info(" DAO : board delete 시작");
 		
-		sqlSession.insert(namespace + ".R_Board_delete", rcp_b_num);
+		sqlSession.delete(namespace + ".R_Board_delete", rcp_b_num);
 		
 		logger.info(" DAO : board delete 끝");
 	}
