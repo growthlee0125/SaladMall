@@ -45,6 +45,42 @@
 
 ### 🚩 디비 설계도 주소 - https://www.erdcloud.com/d/CSdHd4s6yZQC4GwdW
  
+## 😎 핵심 기능 설명
+
+
+### 🕹 검색 기능 : 검색할 테이블 선택 후 검색어를 모든 컬럼에 검색하여 결과 반환
+
+1. 검색할 테이블 선택
+
+2. 선택한 테이블의 기본키 컬럼 이름 가져오기
+	
+ > SELECT COLUMN_NAME <br>
+ > FROM INFORMATION_SCHEMA.KEY_COLUMN_USAGE <br>
+ > WHERE TABLE_NAME = #{table_name} <br>
+ > AND CONSTRAINT_NAME = 'PRIMARY' <br>
+
+3. 선택한 테이블 모든 컬럼 이름 가져오기
+> SELECT column_name as 'columns' FROM information_schema.columns <br>
+> WHERE table_name=#{table_name} <br>
+
+4. 가져온 컬럼 중 검색에 제외할 컬럼 제외
+
+5. 각 컬럼별 검색할 데이터 검색하여 ( like '%데이터%' ) 기본키 값 가져오기
+
+6. 검색한 기본키 값으로 해당 테이블 모든 값 가져오기 <br>
+   ps. 각 테이블마다 Bean이 다르고 공통된 게 없으므로 <br> 
+       Object 타입으로 업 캐스팅 후 다운 캐스팅
+
+7. 불러온 값들을 SeachVO타입으로 변환하여 결과 반환 후 jsp페이지에 출력 
+
+### 🕹 샐러드 디비 저장 방식  <br>
+
+    ⓐ 선택한 재료의 고유번호를 오름차순이나 내림차순으로 정렬하여 구분자(,)로 구분한다 <br>
+    ex) 3, 2 5 4 1 -> 1,2,3,4,5  <br>
+    ⓑ 재료 종류에 따라 구분자(/)로 구분하여 합친다.(순서를 야채 육류 소스로 예시) <br>
+ 	  ex) 1,3,5/6,7,10/81,87  <br>
+    ⓒ ⓑ의 레시피를 db에 저장하되 유니크 속성으로 중복확인하거나 select로 중복확인 할 것  <br>
+
 ## 💻 주요 기능
 
 :rotating_light: <b> 로그인 및 회원가입 </b>
