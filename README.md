@@ -1,7 +1,4 @@
 # <center> :tomato: Customizing SaladMall - 첫 번째 팀프로젝트 </center>
-
-### ✨ 쇼핑몰 DEMO 주소 - http://itwillbs9.cafe24.com/SaladMall/index
-
 <br>
 
 ![image](https://user-images.githubusercontent.com/92525310/149265167-e87e19a5-ea38-4800-95bb-5703feedd350.png)
